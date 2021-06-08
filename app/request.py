@@ -6,11 +6,7 @@ from .models import news
 apiKey = app.config['NEWS_API_KEY']
 # getting the movie base url
 base_url = app.config["NEWS_API_BASE_URL"]
-
-
-
 # .........................get news section............................
-
 def get_news(category):
     '''
     Function that gets the json response to our url request
@@ -47,61 +43,42 @@ def process_results(news_list):
         # news_object = news(id,name,description,url,category,country,language)
         # news_results.append(news_object)
     return news_results
-
-
     # ..........................end of get news...................................
-
 def get_articles(id):
     '''
     function that processes the articles and returns a list of articles objects
     '''
     get_articles_url = articles_url.format(id,apiKey)
-
     with urllib.request.urlopen(get_articles_url) as url:
     articles_results = json.loads(url.read())
-
     articles_object = None
     if articles_results['articles']:
         articles_object = process_articles(articles_results['articles'])
-
 	return articles_object
 
 
 
+def process_articles(articles_list):
+    '''
+    Function  that processes the articles result and transform them to a list of Objects
+    Args:
+        articles_list: A list of dictionaries that contain articles and their  details
+    Returns :
+        articles_results: A list of articles objects
+    '''
+    articles_object = []
+    for article in articles_list:
+        name = article.get('name')
+        title = article.get('title')
+        author = article.get('author')
+        description = article.get('description')
+        url = article.get('url')
+        urlToImage = article.get('urlToImage')
+        publishedAt = article.get('publishedAt')
+        content = article.get('content')
 
+        # if image:
+        #     articles_result = Articles(name,author,title,description,url,urlToImage,publishedAt,content)
+        #     articles_object.append(articles_result)	
 
-
-
-
-
-
-
-
-
-# def process_results(news_list):
-#     '''
-#     Function  that processes the movie result and transform them to a list of Objects
-
-#     Args:
-#         movie_list: A list of dictionaries that contain movie details
-
-#     Returns :
-#         movie_results: A list of movie objects
-#     '''
-#     news_results = []
-#     for news_item in news_list:
-#         name = news_item.get('name')
-#         title = news_item.get('title')
-#         author = news_item.get('author')
-#         title = news_item.get('title')
-#         description = news_item.get('description')
-#         url = news_item.get('url')
-#         urlToImage = news_item.get('urlToImage')
-#         publishedAt = news_item.get('publishedAt')
-#         content = news_item.get('content')
-
-#         # if poster:
-#         #     news_object = news(name,author,title,description,url,urlToImage,publishedAt,content)
-#         #     news_results.append(news_object)
-
-#     return news_results 
+    return articles_object
