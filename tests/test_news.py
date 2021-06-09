@@ -10,12 +10,12 @@ class NewsTest(unittest.TestCase):
     def setUp(self):
         '''
         Set up method that will run before every Test
-        '''
-        self.new_news = News(id,"name","description","url","category",country,language)
+        '''"
+        self.new_news = News(id,"name","description","url","category","country","language")
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_news,News))
 
 
 # if __name__ == '__main__':
-#     unittest.main() 
+#     unittest.main()
