@@ -5,7 +5,7 @@
 This is an application that will allows people to access news from various news websites around the globe.Users can view the available news websites as listed by the type of news eg sports.Users click on the desired website and gets redirected to see more stories from that provider.They can click on an article of choice and get redirected to the website and access the article from there.The app uses an API.
 
 ## Screenshot
-<img src="" width="1000">
+<img src="https://github.com/martin-moringa/flask2/blob/main/app/pic.png" width="1000">
 
 ## User Story
 
